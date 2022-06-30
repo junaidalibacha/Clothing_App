@@ -56,18 +56,18 @@ class WomenBestSellersScreen extends StatelessWidget {
                   itemCount: sellersList.length,
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: width * 0.05, vertical: height * 0.09),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                     childAspectRatio: 0.5,
-                    crossAxisSpacing: 15,
+                    crossAxisSpacing: width * 0.04,
                     // mainAxisSpacing: 10,
                   ),
                   itemBuilder: (context, index) => Padding(
                     padding: EdgeInsets.only(
-                      top: index.isOdd ? 20 : 0,
-                      bottom: index.isEven ? 20 : 0,
+                      top: index.isOdd ? height * 0.04 : 0,
+                      bottom: index.isEven ? height * 0.04 : 0,
                     ),
                     child: _buildProductCard(_colorList, index),
                   ),
@@ -114,11 +114,11 @@ class WomenBestSellersScreen extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: height * 0.01,
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 10),
+          padding: EdgeInsets.only(left: width * 0.03),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -148,27 +148,26 @@ class WomenBestSellersScreen extends StatelessWidget {
         width: width,
         child: Row(
           children: [
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Icon(Icons.filter_alt_outlined),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+              child: const Icon(Icons.filter_alt_outlined),
             ),
             Expanded(
-              child: ListView.builder(
+              child: ListView(
                 scrollDirection: Axis.horizontal,
-                itemCount: _filterList.length,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 22),
-                itemBuilder: (context, index) => Card(
-                  elevation: 1,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(8),
-                    ),
-                  ),
-                  color: _colorList[index],
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                children: List.generate(
+                  _filterList.length,
+                  (index) => Padding(
+                    padding: EdgeInsets.symmetric(
+                        vertical: height * 0.03, horizontal: width * 0.02),
+                    child: Container(
+                      width: width * 0.2,
+                      height: height * 0.05,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: _colorList[index],
+                      ),
                       child: Text(
                         _filterList[index],
                         style: const TextStyle(

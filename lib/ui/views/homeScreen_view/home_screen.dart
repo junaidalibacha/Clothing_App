@@ -16,25 +16,7 @@ class HomeScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          bottom: PreferredSize(
-            child: const Align(
-              alignment: Alignment.centerRight,
-              child: Padding(
-                padding: EdgeInsets.only(right: 20),
-                child: Icon(
-                  Icons.search,
-                  color: Colors.black,
-                  size: 35,
-                ),
-              ),
-            ),
-            preferredSize: Size(width, height * 0.05),
-          ),
-        ),
+        appBar: _buildAppBar(),
         body: Container(
           height: height * 0.85,
           width: width,
@@ -50,7 +32,7 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: width * 0.05),
             child: Column(
               children: <Widget>[
                 const Spacer(flex: 2),
@@ -71,6 +53,28 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: const BottomNavBarWidget(),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      automaticallyImplyLeading: false,
+      backgroundColor: Colors.transparent,
+      elevation: 0,
+      bottom: PreferredSize(
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: EdgeInsets.only(right: width * 0.05),
+            child: const Icon(
+              Icons.search,
+              color: Colors.black,
+              size: 35,
+            ),
+          ),
+        ),
+        preferredSize: Size(width, height * 0.05),
       ),
     );
   }
